@@ -12,22 +12,22 @@ resource "helm_release" "nfs_subdir" {
 
   set {
     name  = "nfs.server"
-    value = var.server
+    value = var.nfs_server
   }
 
   set {
     name  = "nfs.path"
-    value = var.path
+    value = var.nfs_path
   }
 
   set {
     name  = "nfs.mountOptions"
-    value = "{${var.mountOptions}}"
+    value = "{${var.nfs_mount_options}}"
   }
 
   set {
     name  = "storageClass.defaultClass"
-    value = var.defaultStorageClass
+    value = var.default_storage_class
   }
 }
 
