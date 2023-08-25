@@ -1,0 +1,9 @@
+nfs:
+  mountOptions:
+  %{ for mount_option in nfs_mount_options ~}
+  - ${mount_option}
+  %{ endfor ~}
+  path: ${nfs_path}
+  server: ${nfs_server}
+storageClass:
+  defaultClass: ${default_storage_class}

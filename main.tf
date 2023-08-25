@@ -10,24 +10,11 @@ resource "helm_release" "nfs_subdir" {
   namespace        = "nfs-subdir"
   create_namespace = true
 
-  set {
-    name  = "nfs.server"
-    value = var.nfs_server
-  }
-
-  set {
-    name  = "nfs.path"
-    value = var.nfs_path
-  }
-
-  set {
-    name  = "nfs.mountOptions"
-    value = "{${var.nfs_mount_options}}"
-  }
-
-  set {
-    name  = "storageClass.defaultClass"
-    value = var.default_storage_class
-  }
+  values = [templatefile("${path.module}/templates/values.yaml", {
+    nfs_server            = var.nfs_server
+    nfs_path              = var.nfs_path
+    nfs_mount_options     = var.nfs_mount_options
+    default_storage_class = var.default_storage_class
+  })]
 }
 

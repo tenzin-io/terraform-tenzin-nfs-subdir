@@ -8,8 +8,8 @@ variable "nfs_server" {
 }
 
 variable "nfs_mount_options" {
-  type        = string
-  default     = "noatime,nodiratime,nconnect=16"
+  type        = list(string)
+  default     = ["noatime", "nodiratime", "nconnect=16"]
   description = "The NFS share mount options"
 }
 
