@@ -8,6 +8,7 @@ resource "helm_release" "nfs_subdir" {
   chart            = "nfs-subdir-external-provisioner"
   version          = "4.0.18"
   namespace        = "nfs-subdir"
+  force_update     = true
   create_namespace = true
 
   values = [templatefile("${path.module}/templates/values.yaml", {
